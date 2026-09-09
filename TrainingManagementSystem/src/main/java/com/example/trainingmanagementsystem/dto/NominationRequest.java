@@ -2,7 +2,9 @@ package com.example.trainingmanagementsystem.dto;
 
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
+@Getter
 public class NominationRequest {
 
     @NotNull(message = "Officer ID is required")
@@ -14,24 +16,12 @@ public class NominationRequest {
     @NotNull(message = "Department ID is required")
     private Long departmentId;
 
-    public Long getOfficerId() {
-        return officerId;
-    }
-
     public void setOfficerId(Long officerId) {
         this.officerId = officerId;
     }
 
-    public Long getTrainingProgramId() {
-        return trainingProgramId;
-    }
-
     public void setTrainingProgramId(Long trainingProgramId) {
         this.trainingProgramId = trainingProgramId;
-    }
-
-    public Long getDepartmentId() {
-        return departmentId;
     }
 
     public void setDepartmentId(Long departmentId) {

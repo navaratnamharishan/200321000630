@@ -1,7 +1,5 @@
 package com.example.trainingmanagementsystem.controller;
 
-
-
 import com.example.trainingmanagementsystem.dto.NominationRequest;
 import com.example.trainingmanagementsystem.entity.Nomination;
 import com.example.trainingmanagementsystem.service.NominationService;
@@ -21,6 +19,15 @@ public class NominationController {
 
     public NominationController(NominationService service) {
         this.service = service;
+    }
+
+    @PutMapping("/{id}/cancel")
+    public ResponseEntity<String> cancelNomination(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                service.cancelNomination(id)
+        );
     }
 
     @PostMapping

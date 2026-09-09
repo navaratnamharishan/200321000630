@@ -2,9 +2,11 @@ package com.example.trainingmanagementsystem.dto;
 
 
 import jakarta.validation.constraints.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
+@Getter
 public class TrainingProgramRequest {
 
     @NotBlank(message = "Training title is required")
@@ -26,48 +28,24 @@ public class TrainingProgramRequest {
     @NotBlank(message = "Target department is required")
     private String targetDepartment;
 
-    public String getTrainingTitle() {
-        return trainingTitle;
-    }
-
     public void setTrainingTitle(String trainingTitle) {
         this.trainingTitle = trainingTitle;
-    }
-
-    public LocalDate getTrainingDate() {
-        return trainingDate;
     }
 
     public void setTrainingDate(LocalDate trainingDate) {
         this.trainingDate = trainingDate;
     }
 
-    public String getVenue() {
-        return venue;
-    }
-
     public void setVenue(String venue) {
         this.venue = venue;
-    }
-
-    public String getResourcePerson() {
-        return resourcePerson;
     }
 
     public void setResourcePerson(String resourcePerson) {
         this.resourcePerson = resourcePerson;
     }
 
-    public Integer getMaximumParticipants() {
-        return maximumParticipants;
-    }
-
     public void setMaximumParticipants(Integer maximumParticipants) {
         this.maximumParticipants = maximumParticipants;
-    }
-
-    public String getTargetDepartment() {
-        return targetDepartment;
     }
 
     public void setTargetDepartment(String targetDepartment) {

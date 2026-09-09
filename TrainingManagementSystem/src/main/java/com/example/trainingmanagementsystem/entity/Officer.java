@@ -3,7 +3,10 @@ package com.example.trainingmanagementsystem.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 @Entity
 @Table(
         name = "officers",
@@ -17,12 +20,15 @@ public class Officer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     @Column(nullable = false)
     private String officerNumber;
 
+    @Setter
     @Column(nullable = false)
     private String name;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
@@ -30,31 +36,4 @@ public class Officer {
     public Officer() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getOfficerNumber() {
-        return officerNumber;
-    }
-
-    public void setOfficerNumber(String officerNumber) {
-        this.officerNumber = officerNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
 }
