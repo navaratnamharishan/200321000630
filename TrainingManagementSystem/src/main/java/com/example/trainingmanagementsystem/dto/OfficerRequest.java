@@ -2,7 +2,9 @@ package com.example.trainingmanagementsystem.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
+@Getter
 public class OfficerRequest {
 
     @NotBlank(message = "Officer number is required")
@@ -14,24 +16,12 @@ public class OfficerRequest {
     @NotNull(message = "Department ID is required")
     private Long departmentId;
 
-    public String getOfficerNumber() {
-        return officerNumber;
-    }
-
     public void setOfficerNumber(String officerNumber) {
         this.officerNumber = officerNumber;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getDepartmentId() {
-        return departmentId;
     }
 
     public void setDepartmentId(Long departmentId) {

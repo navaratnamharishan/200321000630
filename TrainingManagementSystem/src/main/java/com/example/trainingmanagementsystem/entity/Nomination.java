@@ -1,9 +1,12 @@
 package com.example.trainingmanagementsystem.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @Table(
         name = "nominations",
@@ -20,57 +23,31 @@ public class Nomination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "officer_id", nullable = false)
     private Officer officer;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "training_program_id", nullable = false)
     private TrainingProgram trainingProgram;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "nominating_department_id", nullable = false)
     private Department nominatingDepartment;
 
+    @Setter
     @Column(nullable = false)
     private LocalDateTime nominatedAt;
+
+    @Setter
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private NominationStatus status;
 
     public Nomination() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Officer getOfficer() {
-        return officer;
-    }
-
-    public void setOfficer(Officer officer) {
-        this.officer = officer;
-    }
-
-    public TrainingProgram getTrainingProgram() {
-        return trainingProgram;
-    }
-
-    public void setTrainingProgram(TrainingProgram trainingProgram) {
-        this.trainingProgram = trainingProgram;
-    }
-
-    public Department getNominatingDepartment() {
-        return nominatingDepartment;
-    }
-
-    public void setNominatingDepartment(Department nominatingDepartment) {
-        this.nominatingDepartment = nominatingDepartment;
-    }
-
-    public LocalDateTime getNominatedAt() {
-        return nominatedAt;
-    }
-
-    public void setNominatedAt(LocalDateTime nominatedAt) {
-        this.nominatedAt = nominatedAt;
-    }
 }
