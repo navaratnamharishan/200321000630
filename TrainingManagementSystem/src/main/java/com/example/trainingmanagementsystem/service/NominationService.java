@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 public class NominationService {
 
+    private final EligibilityService eligibilityService;
     private final NominationRepository nominationRepository;
     private final OfficerRepository officerRepository;
     private final TrainingProgramRepository trainingProgramRepository;
@@ -24,12 +25,14 @@ public class NominationService {
             NominationRepository nominationRepository,
             OfficerRepository officerRepository,
             TrainingProgramRepository trainingProgramRepository,
-            DepartmentRepository departmentRepository) {
+            DepartmentRepository departmentRepository,
+            EligibilityService eligibilityService) {
 
         this.nominationRepository = nominationRepository;
         this.officerRepository = officerRepository;
         this.trainingProgramRepository = trainingProgramRepository;
         this.departmentRepository = departmentRepository;
+        this.eligibilityService = eligibilityService;
     }
 
     public Nomination createNomination(NominationRequest request) {
@@ -84,6 +87,23 @@ public class NominationService {
         // 6. Create nomination
         Nomination nomination = new Nomination();
 
+        LocalDateTime twelveMonthsAgo =
+                LocalDateTime.now().minusMonths(12);
+
+        boolean participatedRecently =
+                nominationRepository
+                        .existsByOfficerIdAndTrainingProgramIdAndNominatedAtAfter(
+                                officer.getId(),
+                                trainingProgram.getId(),
+                                twelveMonthsAgo
+                        );
+
+        if (participatedRecently) {
+
+            throw new RuntimeException(
+                    "Officer has participated in this training programme within the previous 12 months."
+            );
+        }
         nomination.setOfficer(officer);
         nomination.setTrainingProgram(trainingProgram);
         nomination.setNominatingDepartment(department);

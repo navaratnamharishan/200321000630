@@ -1,10 +1,10 @@
 package com.example.trainingmanagementsystem.entity;
 
-
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Getter
 @Entity
@@ -32,6 +32,15 @@ public class Officer {
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
+
+    @Setter
+    private String grade;
+
+    @Setter
+    private String designation;
+
+    @Setter
+    private LocalDate joiningDate;
 
     public Officer() {
     }
