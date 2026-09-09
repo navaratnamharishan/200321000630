@@ -48,6 +48,10 @@ public class OfficerService {
         officer.setName(request.getName());
         officer.setDepartment(department);
 
+        officer.setGrade(request.getGrade());
+        officer.setDesignation(request.getDesignation());
+        officer.setJoiningDate(request.getJoiningDate());
+
         return officerRepository.save(officer);
     }
 

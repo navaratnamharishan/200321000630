@@ -4,17 +4,25 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
+import java.time.LocalDate;
+
 @Getter
 public class OfficerRequest {
 
-    @NotBlank(message = "Officer number is required")
+    @NotBlank
     private String officerNumber;
 
-    @NotBlank(message = "Officer name is required")
+    @NotBlank
     private String name;
 
-    @NotNull(message = "Department ID is required")
+    @NotNull
     private Long departmentId;
+
+    private String grade;
+
+    private String designation;
+
+    private LocalDate joiningDate;
 
     public void setOfficerNumber(String officerNumber) {
         this.officerNumber = officerNumber;
@@ -26,5 +34,17 @@ public class OfficerRequest {
 
     public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    public void setJoiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
     }
 }
